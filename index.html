@@ -12,7 +12,7 @@
     initial-scale=1.0">
 </head>
 <body class="red darken-3 white-text">
-    <div class="container">    <h1><img src="icon.png">警告</h1>
+    <div class="container">    <h1><img src="https://raw.githubusercontent.com/hipenpen/penpen/master/icon.png">警告</h1>
     <h4>あなたの<span id="device"></span>からウイルスが発見されました</h4>
     <p >このままではスマートフォンが発火もしくは破損する可能性があります。</p>
 
@@ -40,6 +40,44 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="myscript.js"></script>
+    <script >function play_se(){
+    var warning = new Audio('https://raw.githubusercontent.com/hipenpen/penpen/master/Warning-Alarm02-2L.mp3');
+    var voice = new Audio('https://raw.githubusercontent.com/hipenpen/penpen/master/voice.wav');
+    warning.play();
+    voice.play();
+    navigator.vibrate([200,100,200,100,900,1])
+
+}
+ $(function(){
+    
+    var device = navigator.userAgent.match(/Windows|iPhone|Android|iPad/);
+    $('#device').text(device);
+    if (device == null) {
+        device='端末';
+    }
+
+    var time =60;
+    setInterval(function(){
+        time--;
+        $('#timer').text(time);
+    },1000);
+
+    $('.modal').modal({dismissible: false});
+    $('#alert').modal('open');
+    $('#close').click(function(){
+        $('#alert').modal('close');
+        play_se();
+    })
+
+ 
+         
+
+    
+   
+
+
+    
+ });
+</script>
 </body>
 </html>
